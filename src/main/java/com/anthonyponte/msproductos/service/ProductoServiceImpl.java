@@ -3,15 +3,16 @@ package com.anthonyponte.msproductos.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.anthonyponte.msproductos.model.Producto;
 import com.anthonyponte.msproductos.repository.ProductoRepository;
 
+@Service
 public class ProductoServiceImpl implements IProductoService {
-    private final ProductoRepository repository;
-
-    public ProductoServiceImpl(ProductoRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private ProductoRepository repository;
 
     @Override
     public List<Producto> findAll() {
