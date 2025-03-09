@@ -28,7 +28,7 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(producto));
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Producto> readAll() {
         return service.findAll();
     }
