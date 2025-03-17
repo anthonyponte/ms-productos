@@ -8,9 +8,9 @@ import com.anthonyponte.msproductos.model.Producto;
 public interface IProductoService {
     List<Producto> findAll();
 
-    Optional<Producto> findById(Long id);
+    Optional<Producto> findById(Integer id);
 
     Producto save(Producto client);
 
-    void deleteById(Long id);
+    void deleteById(Integer id);
 }

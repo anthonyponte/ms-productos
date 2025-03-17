@@ -20,7 +20,7 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public Optional<Producto> findById(Long id) {
+    public Optional<Producto> findById(Integer id) {
         return repository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         repository.deleteById(id);
     }
 }

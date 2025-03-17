@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msproductos
+  labels:
+    app: msproductos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: msproductos
+  template:
+    metadata:
+      labels:
+        app: msproductos
+    spec:
+      containers:
+        - name: container-msproductos
+          image: anthonyponte/msproductos:v2
+          ports:
+            - containerPort: 9095

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.anthonyponte</groupId>
 	<artifactId>msproductos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>msproductos</name>
 	<description>Microservicio de productos para el curso de Docker</description>
 	<url/>

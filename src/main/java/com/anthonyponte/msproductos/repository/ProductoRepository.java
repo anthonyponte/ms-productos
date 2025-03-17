@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.anthonyponte.msproductos.model.Producto;
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
 }

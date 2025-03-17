@@ -34,14 +34,14 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> readById(@PathVariable Long id) {
+    public ResponseEntity<Producto> readById(@PathVariable Integer id) {
         return service.findById(id)
                 .map(client -> ResponseEntity.ok(client))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> update(@PathVariable Long id, @RequestBody Producto producto) {
+    public ResponseEntity<Producto> update(@PathVariable Integer id, @RequestBody Producto producto) {
         return service.findById(id)
                 .map(p -> {
                     p.setNombre(producto.getNombre());
@@ -53,7 +53,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         if (service.findById(id).isPresent()) {
             service.deleteById(id);
             return ResponseEntity.noContent().build();

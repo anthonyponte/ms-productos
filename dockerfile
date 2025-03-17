@@ -1,9 +1,5 @@
 FROM openjdk:21-jdk-slim
-
 WORKDIR /app
-
-COPY target/msproductos-0.0.1-SNAPSHOT.jar app.jar
-
 EXPOSE 9095
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY target/msproductos-0.0.2-SNAPSHOT.jar msproductos.jar
+ENTRYPOINT ["java", "-jar", "msproductos.jar"]
