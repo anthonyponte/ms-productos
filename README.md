@@ -1,2 +1,2 @@
-# msproductos
+# ms-productos
 Microservicio de productos para el curso de Docker

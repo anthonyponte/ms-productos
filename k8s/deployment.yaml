@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msproductos-deployment
+  name: ms-productos-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: msproductos
+      app: ms-productos
   template:
     metadata:
       labels:
-        app: msproductos
+        app: ms-productos
     spec:
       containers:
-        - name: msproductos-container
-          image: anthonyponte/msproductos:v2
+        - name: ms-productos-container
+          image: anthonyponte/ms-productos:v2
           resources:
             requests:
               cpu: "100m"

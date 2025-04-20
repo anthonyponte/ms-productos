@@ -1,6 +1,7 @@
 package com.anthonyponte.msproductos.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,18 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anthonyponte.msproductos.model.Producto;
 import com.anthonyponte.msproductos.service.IProductoService;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/api/v1/productos")
 public class ProductoController {
     @Autowired
     private IProductoService service;
 
     @PostMapping
-    public ResponseEntity<Producto> create(@RequestBody Producto producto) {
+    public ResponseEntity<Producto> create(@Valid @RequestBody Producto producto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(producto));
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Producto> readAll() {
         return service.findAll();
     }
@@ -36,28 +39,49 @@ public class ProductoController {
     @GetMapping("/{id}")
     public ResponseEntity<Producto> readById(@PathVariable Integer id) {
         return service.findById(id)
-                .map(client -> ResponseEntity.ok(client))
+                .map(p -> ResponseEntity.ok(p))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> update(@PathVariable Integer id, @RequestBody Producto producto) {
+    public ResponseEntity<?> update(@PathVariable Integer id, @Valid @RequestBody Producto producto) {
         return service.findById(id)
                 .map(p -> {
-                    p.setNombre(producto.getNombre());
-                    p.setDescripcion(producto.getDescripcion());
-                    p.setPrecio(producto.getPrecio());
+                    boolean hasChanges = false;
+
+                    if (!producto.getNombre().equalsIgnoreCase(p.getNombre())) {
+                        p.setNombre(producto.getNombre());
+                        hasChanges = true;
+                    }
+
+                    if (!producto.getDescripcion().equalsIgnoreCase(p.getDescripcion())) {
+                        p.setDescripcion(producto.getDescripcion());
+                        hasChanges = true;
+                    }
+
+                    if (producto.getPrecio() != p.getPrecio()) {
+                        p.setPrecio(producto.getPrecio());
+                        hasChanges = true;
+                    }
+
+                    if (!hasChanges) {
+                        return ResponseEntity.badRequest()
+                                .body(Map.of("mensaje",
+                                        "No se realizaron cambios: los datos del producto son iguales a los actuales."));
+                    }
+
                     return ResponseEntity.ok(service.save(p));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         if (service.findById(id).isPresent()) {
             service.deleteById(id);
             return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 }
