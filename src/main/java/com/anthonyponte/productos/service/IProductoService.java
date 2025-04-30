@@ -1,9 +1,9 @@
-package com.anthonyponte.msproductos.service;
+package com.anthonyponte.productos.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.anthonyponte.msproductos.model.Producto;
+import com.anthonyponte.productos.model.Producto;
 
 public interface IProductoService {
     List<Producto> findAll();

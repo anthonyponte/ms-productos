@@ -1,4 +1,4 @@
-package com.anthonyponte.msproductos.model;
+package com.anthonyponte.productos.model;
 
 import java.io.Serializable;
 

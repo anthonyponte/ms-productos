@@ -1,4 +1,4 @@
-package com.anthonyponte.msproductos.service;
+package com.anthonyponte.productos.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.anthonyponte.msproductos.model.Producto;
-import com.anthonyponte.msproductos.repository.ProductoRepository;
+import com.anthonyponte.productos.model.Producto;
+import com.anthonyponte.productos.repository.ProductoRepository;
 
 @Service
 public class ProductoServiceImpl implements IProductoService {

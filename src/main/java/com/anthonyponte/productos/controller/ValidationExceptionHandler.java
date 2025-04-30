@@ -1,4 +1,4 @@
-package com.anthonyponte.msproductos.controller;
+package com.anthonyponte.productos.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

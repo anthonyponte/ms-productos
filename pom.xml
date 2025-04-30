@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.anthonyponte</groupId>
-	<artifactId>ms-productos</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
-	<name>ms-productos</name>
-	<description>Microservicio de productos para el curso de Docker</description>
+	<artifactId>ms-productos-backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ms-productos-backend</name>
+	<description>Microservicio de productos para el curso de Docker y Kubernetes Básico</description>
 	<url/>
 	<licenses>
 		<license/>

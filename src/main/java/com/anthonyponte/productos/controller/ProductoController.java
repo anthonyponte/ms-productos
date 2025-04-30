@@ -1,4 +1,4 @@
-package com.anthonyponte.msproductos.controller;
+package com.anthonyponte.productos.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anthonyponte.msproductos.model.Producto;
-import com.anthonyponte.msproductos.service.IProductoService;
+import com.anthonyponte.productos.model.Producto;
+import com.anthonyponte.productos.service.IProductoService;
 
 import jakarta.validation.Valid;
 
