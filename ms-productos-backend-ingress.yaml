@@ -14,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ms-productos-backend-service
+            name: ms-productos-backend
             port:
               number: 9095

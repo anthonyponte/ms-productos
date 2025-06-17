@@ -1,10 +1,9 @@
 package com.anthonyponte.productos.controller;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.anthonyponte.productos.model.Producto;
 import com.anthonyponte.productos.service.IProductoService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/productos")
@@ -26,62 +24,34 @@ public class ProductoController {
     @Autowired
     private IProductoService service;
 
-    @PostMapping
-    public ResponseEntity<Producto> create(@Valid @RequestBody Producto producto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(producto));
-    }
-
     @GetMapping
-    public List<Producto> readAll() {
-        return service.findAll();
+    public List<Producto> listarProductos() {
+        return service.listarProductos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> readById(@PathVariable Integer id) {
-        return service.findById(id)
-                .map(p -> ResponseEntity.ok(p))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
+        Producto producto = service.obtenerProductoPorId(id);
+        return ResponseEntity.ok(producto);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> guardarProducto(@RequestBody Producto producto) {
+        Producto p = service.guardarProducto(producto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .build(p.getId());
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @Valid @RequestBody Producto producto) {
-        return service.findById(id)
-                .map(p -> {
-                    boolean hasChanges = false;
-
-                    if (!producto.getNombre().equalsIgnoreCase(p.getNombre())) {
-                        p.setNombre(producto.getNombre());
-                        hasChanges = true;
-                    }
-
-                    if (!producto.getDescripcion().equalsIgnoreCase(p.getDescripcion())) {
-                        p.setDescripcion(producto.getDescripcion());
-                        hasChanges = true;
-                    }
-
-                    if (producto.getPrecio() != p.getPrecio()) {
-                        p.setPrecio(producto.getPrecio());
-                        hasChanges = true;
-                    }
-
-                    if (!hasChanges) {
-                        return ResponseEntity.badRequest()
-                                .body(Map.of("mensaje",
-                                        "No se realizaron cambios: los datos del producto son iguales a los actuales."));
-                    }
-
-                    return ResponseEntity.ok(service.save(p));
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Producto> actualizarEvento(@PathVariable Long id, @RequestBody Producto producto) {
+        Producto p = service.actualizarProducto(id, producto);
+        return ResponseEntity.ok(p);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
-        if (service.findById(id).isPresent()) {
-            service.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public void eliminarProductoPorId(@PathVariable Long id) {
+        service.eliminarProductoPorId(id);
     }
 }

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ms-productos-backend-container
-          image: anthonyponte/ms-productos-backend:v1
+          image: anthonyponte/ms-productos-backend:1.0.0
           resources:
             requests:
               cpu: "100m"
@@ -25,7 +25,7 @@ spec:
           ports:
             - containerPort: 9095
           volumeMounts:
-            - name: h2-storage
+            - name: ms-productos-backend
               mountPath: /h2-data
           env:
             - name: SPRING_DATASOURCE_URL
@@ -37,6 +37,6 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: del1al9
       volumes:
-        - name: h2-storage
+        - name: ms-productos-backend
           persistentVolumeClaim:
-            claimName: h2-pvc
+            claimName: ms-productos-backend-pvc
