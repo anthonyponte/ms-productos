@@ -1,15 +1,23 @@
 # ms-productos-backend
 Microservicio de productos para el proyecto final del curso de Docker y Kubernetes Básico
 
+## Requisitos
+- H2 Database Engine
+
 ## Instalacion
+Ejecutar los siguientes comandos para desplegar H2 Database Engine:
+
+```
+kubectl apply -f h2-pvc.yaml
+kubectl apply -f h2-deployment.yaml
+kubectl apply -f h2-service.yaml
+```
+
 Ejecutar los siguientes comandos para desplegar el microservicio:
 ```
-kubectl apply -f ms-productos-backend-configmap.yml
-kubectl apply -f ms-productos-backend-pv.yml
-kubectl apply -f ms-productos-backend-pvc.yml
-kubectl apply -f ms-productos-backend-deployment.yml
-kubectl apply -f ms-productos-backend-service.yml
-kubectl apply -f ms-productos-backend-ingress.yml
+kubectl apply -f ms-productos-backend-deployment.yaml
+kubectl apply -f ms-productos-backend-service.yaml
+kubectl apply -f ms-productos-backend-ingress.yaml
 ```
 
 ## Uso

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: h2-server
+spec:
+  selector:
+    app: h2-server
+  ports:
+    - name: jdbc
+      port: 9092
+      targetPort: 9092
+    - name: web
+      port: 81
+      targetPort: 81

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h2-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: h2-server
+  template:
+    metadata:
+      labels:
+        app: h2-server
+    spec:
+      containers:
+        - name: h2
+          image: oscarfonts/h2:latest
+          ports:
+            - containerPort: 9092
+            - containerPort: 81
+          args:
+            - "-tcp"
+            - "-tcpAllowOthers"
+            - "-web"
+            - "-webAllowOthers"
+            - "-baseDir"
+            - "/h2-data"
+          volumeMounts:
+            - name: h2-data
+              mountPath: /h2-data
+      volumes:
+        - name: h2-data
+          persistentVolumeClaim:
+            claimName: h2-data-pvc

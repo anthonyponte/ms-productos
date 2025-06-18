@@ -24,19 +24,12 @@ spec:
               memory: "256Mi"
           ports:
             - containerPort: 9095
-          volumeMounts:
-            - name: ms-productos-backend
-              mountPath: /h2-data
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:h2:file:/h2-data/msdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+              value: jdbc:h2:tcp://h2-server:9092/~/productos
             - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
               value: org.h2.Driver
             - name: SPRING_DATASOURCE_USERNAME
               value: sa
             - name: SPRING_DATASOURCE_PASSWORD
               value: del1al9
-      volumes:
-        - name: ms-productos-backend
-          persistentVolumeClaim:
-            claimName: ms-productos-backend-pvc
