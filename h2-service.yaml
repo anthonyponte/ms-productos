@@ -7,8 +7,8 @@ spec:
     app: h2-server
   ports:
     - name: jdbc
-      port: 9092
-      targetPort: 9092
+      port: 1521
+      targetPort: 1521
     - name: web
       port: 81
       targetPort: 81

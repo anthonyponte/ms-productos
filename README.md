@@ -17,7 +17,6 @@ Ejecutar los siguientes comandos para desplegar el microservicio:
 ```
 kubectl apply -f ms-productos-backend-deployment.yaml
 kubectl apply -f ms-productos-backend-service.yaml
-kubectl apply -f ms-productos-backend-ingress.yaml
 ```
 
 ## Uso

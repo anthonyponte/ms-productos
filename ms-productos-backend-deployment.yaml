@@ -26,7 +26,7 @@ spec:
             - containerPort: 9095
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:h2:tcp://h2-server:9092/~/productos
+              value: jdbc:h2:tcp://h2-server:1521/productos;IFEXISTS=FALSE
             - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
               value: org.h2.Driver
             - name: SPRING_DATASOURCE_USERNAME

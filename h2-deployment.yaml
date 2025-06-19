@@ -16,18 +16,14 @@ spec:
         - name: h2
           image: oscarfonts/h2:latest
           ports:
-            - containerPort: 9092
+            - containerPort: 1521
             - containerPort: 81
-          args:
-            - "-tcp"
-            - "-tcpAllowOthers"
-            - "-web"
-            - "-webAllowOthers"
-            - "-baseDir"
-            - "/h2-data"
+          env:
+            - name: H2_OPTIONS
+              value: -ifNotExists
           volumeMounts:
             - name: h2-data
-              mountPath: /h2-data
+              mountPath: /opt/h2-data
       volumes:
         - name: h2-data
           persistentVolumeClaim:

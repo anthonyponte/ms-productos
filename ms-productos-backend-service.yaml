@@ -6,6 +6,8 @@ spec:
   selector:
     app: ms-productos-backend
   ports:
-    - protocol: TCP
-      port: 9095
-      targetPort: 9095
+  - protocol: TCP
+    port: 9095
+    targetPort: 9095
+    nodePort: 30095
+  type: NodePort
