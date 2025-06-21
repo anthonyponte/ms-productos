@@ -36,12 +36,12 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> guardarProducto(@RequestBody Producto producto) {
-        Producto p = service.guardarProducto(producto);
+    public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
+        Producto p = service.crearProducto(producto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .build(p.getId());
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(p);
     }
 
     @PutMapping("/{id}")

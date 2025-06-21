@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ms-productos-backend-container
-          image: anthonyponte/ms-productos-backend:1.0.0
+          image: anthonyponte/ms-productos-backend:1.0.1
           resources:
             requests:
               cpu: "100m"
