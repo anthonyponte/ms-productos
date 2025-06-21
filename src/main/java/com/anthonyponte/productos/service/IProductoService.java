@@ -9,7 +9,7 @@ public interface IProductoService {
 
     Producto obtenerProductoPorId(Long id);
 
-    Producto guardarProducto(Producto producto);
+    Producto crearProducto(Producto producto);
 
     Producto actualizarProducto(Long id, Producto producto);
 

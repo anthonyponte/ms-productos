@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.anthonyponte</groupId>
 	<artifactId>ms-productos-backend</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>ms-productos-backend</name>
 	<description>Microservicio de productos para el proyecto final del curso de Docker y Kubernetes Básico</description>
 	<url/>
